@@ -122,9 +122,10 @@ void onePlayerNaive() {
     while(!isEndGame(matches, nbMatches)) {
         numPlayer = (numPlayer % 2) + 1;
   
-        printf("C'est au tour du joueur %d\n", numPlayer);
         remaining = getRemainingMatches(matches,nbMatches);
         printf("Il reste %d allumettes à retirer\n",remaining);
+
+        printf("Joueur %d - ", numPlayer);
 
         if(numPlayer == 2) {
             do {
@@ -177,9 +178,9 @@ void onePlayerSmart() {
     while(!isEndGame(matches, nbMatches)) {
         numPlayer = (numPlayer % 2) + 1;
   
-        printf("C'est au tour du joueur %d\n", numPlayer);
         remaining = getRemainingMatches(matches,nbMatches);
         printf("Il reste %d allumettes à retirer\n",remaining);
+        printf("Joueur %d - ", numPlayer);
 
         if(numPlayer == 2) {
             nbToRemove = aiChoice(MAX, remaining); 
@@ -230,9 +231,11 @@ void twoPlayersGame() {
     while(!isEndGame(matches, nbMatches)) {
         numPlayer = (numPlayer % 2) + 1;
   
-        printf("It's player %d turn\n", numPlayer);
         remaining = getRemainingMatches(matches,nbMatches);
         printf("Il reste %d allumettes à retirer\n",remaining);
+
+        printf("Joueur %d - ", numPlayer);
+
         nbToRemove = playerChoice(MAX,remaining);
 
         for(int i = 0; i < nbToRemove; i++) {
