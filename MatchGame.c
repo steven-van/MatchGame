@@ -126,7 +126,8 @@ void onePlayerNaive() {
     displayMatches(matches, nbMatches);
 
     while(!isEndGame(matches, nbMatches)) {
-  
+        numPlayer = (numPlayer % 2) + 1;
+
         remaining = getRemainingMatches(matches,nbMatches);
         printf("Il reste %d allumettes à retirer\n",remaining);
 
@@ -153,7 +154,6 @@ void onePlayerNaive() {
         printf("Le joueur %d a retiré %d allumette(s)\n", numPlayer, nbToRemove);
         displayMatches(matches, nbMatches);
 
-        numPlayer = (numPlayer % 2) + 1;
 
         printf("\n");
         }
@@ -183,6 +183,7 @@ void onePlayerSmart() {
     displayMatches(matches, nbMatches);
 
     while(!isEndGame(matches, nbMatches)) {
+        numPlayer = (numPlayer % 2) + 1;
   
         remaining = getRemainingMatches(matches,nbMatches);
         printf("Il reste %d allumettes à retirer\n",remaining);
@@ -207,7 +208,6 @@ void onePlayerSmart() {
         printf("Le joueur %d a retiré %d allumette(s)\n", numPlayer, nbToRemove);
         displayMatches(matches, nbMatches);
 
-        numPlayer = (numPlayer % 2) + 1;
 
         printf("\n");
         }
@@ -237,6 +237,7 @@ void twoPlayersGame() {
     displayMatches(matches, nbMatches);
 
     while(!isEndGame(matches, nbMatches)) {
+        numPlayer = (numPlayer % 2) + 1;
   
         remaining = getRemainingMatches(matches,nbMatches);
         printf("Il reste %d allumettes à retirer\n",remaining);
@@ -255,7 +256,6 @@ void twoPlayersGame() {
         }
         displayMatches(matches, nbMatches);
 
-        numPlayer = (numPlayer % 2) + 1;
 
         printf("\n");
         }
