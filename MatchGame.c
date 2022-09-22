@@ -98,8 +98,14 @@ void displayMatches(int tabMatches[], int length) {
     for(int i = 1; i <= length; i++) {
         printf("%d ", i);
     }
-    printf("\n\n");
+    printf("\n");
 
+}
+
+int randomRange(int min, int max) // [min ; max[
+{
+    srand(time(NULL));
+    return ( rand() % ( max - min ) ) + min;
 }
 
 
@@ -109,7 +115,7 @@ void onePlayerNaive() {
     int nbToRemove;
     int matchToRemove;
     int MAX = 3;
-    int numPlayer = 0;
+    int numPlayer = randomRange(0,2) + 1;
     
     printf("Veuillez saisir le nombre d'allumettes total : ");
     scanf("%d", &nbMatches);
@@ -120,7 +126,6 @@ void onePlayerNaive() {
     displayMatches(matches, nbMatches);
 
     while(!isEndGame(matches, nbMatches)) {
-        numPlayer = (numPlayer % 2) + 1;
   
         remaining = getRemainingMatches(matches,nbMatches);
         printf("Il reste %d allumettes à retirer\n",remaining);
@@ -148,6 +153,8 @@ void onePlayerNaive() {
         printf("Le joueur %d a retiré %d allumette(s)\n", numPlayer, nbToRemove);
         displayMatches(matches, nbMatches);
 
+        numPlayer = (numPlayer % 2) + 1;
+
         printf("\n");
         }
         printf("Le joueur %d ", numPlayer);
@@ -165,7 +172,7 @@ void onePlayerSmart() {
     int nbToRemove;
     int matchToRemove;
     int MAX = 3;
-    int numPlayer = 0;
+    int numPlayer = randomRange(0,2) + 1;
     
     printf("Veuillez saisir le nombre d'allumettes total : ");
     scanf("%d", &nbMatches);
@@ -176,7 +183,6 @@ void onePlayerSmart() {
     displayMatches(matches, nbMatches);
 
     while(!isEndGame(matches, nbMatches)) {
-        numPlayer = (numPlayer % 2) + 1;
   
         remaining = getRemainingMatches(matches,nbMatches);
         printf("Il reste %d allumettes à retirer\n",remaining);
@@ -201,6 +207,8 @@ void onePlayerSmart() {
         printf("Le joueur %d a retiré %d allumette(s)\n", numPlayer, nbToRemove);
         displayMatches(matches, nbMatches);
 
+        numPlayer = (numPlayer % 2) + 1;
+
         printf("\n");
         }
         printf("Le joueur %d ", numPlayer);
@@ -218,7 +226,7 @@ void twoPlayersGame() {
     int nbToRemove;
     int matchToRemove;
     int MAX = 3;
-    int numPlayer = 0;
+    int numPlayer = randomRange(0,2) + 1;
     
     printf("Veuillez saisir le nombre d'allumettes total : ");
     scanf("%d", &nbMatches);
@@ -229,7 +237,6 @@ void twoPlayersGame() {
     displayMatches(matches, nbMatches);
 
     while(!isEndGame(matches, nbMatches)) {
-        numPlayer = (numPlayer % 2) + 1;
   
         remaining = getRemainingMatches(matches,nbMatches);
         printf("Il reste %d allumettes à retirer\n",remaining);
@@ -248,6 +255,8 @@ void twoPlayersGame() {
         }
         displayMatches(matches, nbMatches);
 
+        numPlayer = (numPlayer % 2) + 1;
+
         printf("\n");
         }
         printf("Le joueur %d ", numPlayer);
@@ -263,4 +272,8 @@ int main() {
     onePlayerNaive();
     onePlayerSmart();
     twoPlayersGame();
+
+    // Rajouter le menu
+    // Rajouter input noms joueurs
+    // Refacto le tableau en int décrémentable ?
 }
