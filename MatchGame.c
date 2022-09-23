@@ -143,6 +143,11 @@ void onePlayerNaive()
     int matchToRemove;
     int MAX = 3;
     int numPlayer = randomRange(0, 2) + 1;
+    char playerOne[20];
+    char computer[] = "Ordinateur";
+
+    printf("Veuillez entrer le nom du joueur : ");
+    scanf("%s", playerOne);
 
     printf("Veuillez saisir le nombre d'allumettes total : ");
     scanf("%d", &nbMatches);
@@ -159,7 +164,7 @@ void onePlayerNaive()
         remaining = getRemainingMatches(matches, nbMatches);
         printf("Il reste %d allumettes à retirer\n", remaining);
 
-        printf("Joueur %d - ", numPlayer);
+        printf("%s - ", numPlayer == 1 ? playerOne : computer);
 
         if (numPlayer == 2)
         {
@@ -182,12 +187,15 @@ void onePlayerNaive()
 
             removeMatch(matches, matchToRemove);
         }
-        printf("Le joueur %d a retiré %d allumette(s)\n", numPlayer, nbToRemove);
+
+        printf("%s a retiré %d allumette(s)\n", numPlayer == 1 ? playerOne : computer, nbToRemove);
+
         displayMatches(matches, nbMatches);
 
         printf("\n");
     }
-    printf("Le joueur %d ", numPlayer);
+    printf("%s ", numPlayer == 1 ? playerOne : computer);
+
     if (isWinGame(matches, nbMatches))
     {
         printf("a gagné");
@@ -206,6 +214,11 @@ void onePlayerSmart()
     int matchToRemove;
     int MAX = 3;
     int numPlayer = randomRange(0, 2) + 1;
+    char playerOne[20];
+    char computer[] = "Ordinateur";
+
+    printf("Veuillez entrer le nom du joueur : ");
+    scanf("%s", playerOne);
 
     printf("Veuillez saisir le nombre d'allumettes total : ");
     scanf("%d", &nbMatches);
@@ -221,7 +234,7 @@ void onePlayerSmart()
 
         remaining = getRemainingMatches(matches, nbMatches);
         printf("Il reste %d allumettes à retirer\n", remaining);
-        printf("Joueur %d - ", numPlayer);
+        printf("%s - ", numPlayer == 1 ? playerOne : computer);
 
         if (numPlayer == 2)
         {
@@ -241,12 +254,13 @@ void onePlayerSmart()
 
             removeMatch(matches, matchToRemove);
         }
-        printf("Le joueur %d a retiré %d allumette(s)\n", numPlayer, nbToRemove);
+
+        printf("%s a retiré %d allumette(s)\n", numPlayer == 1 ? playerOne : computer, nbToRemove);
         displayMatches(matches, nbMatches);
 
         printf("\n");
     }
-    printf("Le joueur %d ", numPlayer);
+    printf("%s ", numPlayer == 1 ? playerOne : computer);
     if (isWinGame(matches, nbMatches))
     {
         printf("a gagné");
@@ -265,6 +279,13 @@ void twoPlayersGame()
     int matchToRemove;
     int MAX = 3;
     int numPlayer = randomRange(0, 2) + 1;
+    char playerOne[20];
+    char playerTwo[20];
+
+    printf("Veuillez entrer le nom du joueur 1 : ");
+    scanf("%s", playerOne);
+    printf("Veuillez entrer le nom du joueur 2 : ");
+    scanf("%s", playerTwo);
 
     printf("Veuillez saisir le nombre d'allumettes total : ");
     scanf("%d", &nbMatches);
@@ -281,7 +302,7 @@ void twoPlayersGame()
         remaining = getRemainingMatches(matches, nbMatches);
         printf("Il reste %d allumettes à retirer\n", remaining);
 
-        printf("Joueur %d - ", numPlayer);
+        printf("%s - ", numPlayer == 1 ? playerOne : playerTwo);
 
         nbToRemove = playerChoice(MAX, remaining);
 
@@ -298,7 +319,7 @@ void twoPlayersGame()
 
         printf("\n");
     }
-    printf("Le joueur %d ", numPlayer);
+    printf("%s ", numPlayer == 1 ? playerOne : playerTwo);
     if (isWinGame(matches, nbMatches))
     {
         printf("a gagné");
