@@ -153,8 +153,8 @@ void onePlayerNaive()
     scanf("%d", &nbMatches);
 
     int matches[nbMatches];
-    createMatches(matches, nbMatches);
 
+    createMatches(matches, nbMatches);
     displayMatches(matches, nbMatches);
 
     while (!isEndGame(matches, nbMatches))
@@ -224,8 +224,8 @@ void onePlayerSmart()
     scanf("%d", &nbMatches);
 
     int matches[nbMatches];
-    createMatches(matches, nbMatches);
 
+    createMatches(matches, nbMatches);
     displayMatches(matches, nbMatches);
 
     while (!isEndGame(matches, nbMatches))
@@ -337,6 +337,5 @@ int main()
     twoPlayersGame();
 
     // Rajouter le menu
-    // Rajouter input noms joueurs avec if
     // Refacto le tableau en int décrémentable ?
 }
