@@ -2,37 +2,48 @@
 #include <stdlib.h>
 #include <string.h>
 
-void createMatches(int tabMatches[], int nbMatches) {
+void createMatches(int tabMatches[], int nbMatches)
+{
     int *ptr = tabMatches;
-    for(int i = 0; i < nbMatches; i++) {
-        *(ptr+i) = 1;
+    for (int i = 0; i < nbMatches; i++)
+    {
+        *(ptr + i) = 1;
     }
 }
 
-int canRemoveMatch(int tabMatches[], int index, int length) {
-    if(index >= 0 && index < length && tabMatches[index] == 1) {	     		     		  	  
-        return 1;	     		     		  	  
-    } else {
+int canRemoveMatch(int tabMatches[], int index, int length)
+{
+    if (index >= 0 && index < length && tabMatches[index] == 1)
+    {
+        return 1;
+    }
+    else
+    {
         return 0;
-    }	     		  	  
+    }
 }
 
-int getRemainingMatches(int tabMatches[], int length) {
+int getRemainingMatches(int tabMatches[], int length)
+{
     int cpt = 0;
-    for(int i = 0; i < length; i++) {
-        if(tabMatches[i] == 1) {
+    for (int i = 0; i < length; i++)
+    {
+        if (tabMatches[i] == 1)
+        {
             cpt++;
         }
     }
     return cpt;
 }
 
-int playerChoice(int maxToRemove, int maxRemovable) {
+int playerChoice(int maxToRemove, int maxRemovable)
+{
     int nb;
-    
+
     printf("Indiquez le nombre d'allumettes à retirer (<= 3) : ");
     scanf("%d", &nb);
-    while(nb < 1 || nb > maxToRemove || nb > maxRemovable) {
+    while (nb < 1 || nb > maxToRemove || nb > maxRemovable)
+    {
         printf("Invalide ! Recommencez \n");
         scanf("%d", &nb);
     }
@@ -40,83 +51,99 @@ int playerChoice(int maxToRemove, int maxRemovable) {
     return nb;
 }
 
-void removeMatch(int tabMatches[], int index) {
+void removeMatch(int tabMatches[], int index)
+{
     int *ptr = tabMatches;
-    *(ptr+index) = 0;
-
+    *(ptr + index) = 0;
 }
 
-int isWinGame(int tabMatches[], int length) {
+int isWinGame(int tabMatches[], int length)
+{
     return getRemainingMatches(tabMatches, length) == 1;
 }
 
-int isLoseGame(int tabMatches[], int length) {
+int isLoseGame(int tabMatches[], int length)
+{
     return getRemainingMatches(tabMatches, length) == 0;
 }
 
-int isEndGame(int tabMatches[], int length) {
-    if(isWinGame(tabMatches, length) || isLoseGame(tabMatches, length)) {
+int isEndGame(int tabMatches[], int length)
+{
+    if (isWinGame(tabMatches, length) || isLoseGame(tabMatches, length))
+    {
         return 1;
     }
 
     return 0;
 }
 
-int aiChoice(int max, int remaining) {
+int aiChoice(int max, int remaining)
+{
     int nbToRemove;
 
-    if(remaining % 4 == 3) {
+    if (remaining % 4 == 3)
+    {
         nbToRemove = 2;
-    } 
-    else if(remaining % 4 == 2) {
-        nbToRemove = 1;
-    } 
-    else if(remaining % 4 == 0) {
-        nbToRemove = 3;
-    } else {
-        do {
-            nbToRemove = (rand() % max) + 1;
-        } while(nbToRemove > remaining);
     }
-    
+    else if (remaining % 4 == 2)
+    {
+        nbToRemove = 1;
+    }
+    else if (remaining % 4 == 0)
+    {
+        nbToRemove = 3;
+    }
+    else
+    {
+        do
+        {
+            nbToRemove = (rand() % max) + 1;
+        } while (nbToRemove > remaining);
+    }
+
     return nbToRemove;
 }
 
-void displayMatches(int tabMatches[], int length) {
-    for(int i = 0; i < length; i++) {
-        if(tabMatches[i] == 1) {
+void displayMatches(int tabMatches[], int length)
+{
+    for (int i = 0; i < length; i++)
+    {
+        if (tabMatches[i] == 1)
+        {
             printf("| ");
-
-        } else {
+        }
+        else
+        {
             printf("X ");
         }
-        if(i >= 9) {
+        if (i >= 9)
+        {
             printf(" ");
         }
     }
     printf("\n");
-    for(int i = 1; i <= length; i++) {
+    for (int i = 1; i <= length; i++)
+    {
         printf("%d ", i);
     }
     printf("\n");
-
 }
 
 int randomRange(int min, int max) // [min ; max[
 {
     srand(time(NULL));
-    return ( rand() % ( max - min ) ) + min;
+    return (rand() % (max - min)) + min;
 }
 
-
-void onePlayerNaive() {
+void onePlayerNaive()
+{
     int nbMatches;
     int remaining;
     int nbToRemove;
     int matchToRemove;
     int MAX = 3;
-    int numPlayer = randomRange(0,2) + 1;
-    
+    int numPlayer = randomRange(0, 2) + 1;
+
     printf("Veuillez saisir le nombre d'allumettes total : ");
     scanf("%d", &nbMatches);
 
@@ -125,55 +152,61 @@ void onePlayerNaive() {
 
     displayMatches(matches, nbMatches);
 
-    while(!isEndGame(matches, nbMatches)) {
+    while (!isEndGame(matches, nbMatches))
+    {
         numPlayer = (numPlayer % 2) + 1;
 
-        remaining = getRemainingMatches(matches,nbMatches);
-        printf("Il reste %d allumettes à retirer\n",remaining);
+        remaining = getRemainingMatches(matches, nbMatches);
+        printf("Il reste %d allumettes à retirer\n", remaining);
 
         printf("Joueur %d - ", numPlayer);
 
-        if(numPlayer == 2) {
-            do {
+        if (numPlayer == 2)
+        {
+            do
+            {
                 nbToRemove = (rand() % MAX) + 1;
-            } while(nbToRemove > remaining);
-        } 
-        else {
-            nbToRemove = playerChoice(MAX,remaining);
+            } while (nbToRemove > remaining);
+        }
+        else
+        {
+            nbToRemove = playerChoice(MAX, remaining);
         }
 
-        for(int i = 0; i < nbToRemove; i++) {
-             do {
+        for (int i = 0; i < nbToRemove; i++)
+        {
+            do
+            {
                 matchToRemove = rand() % nbMatches;
-             }
-             while(!canRemoveMatch(matches, matchToRemove, nbMatches));
+            } while (!canRemoveMatch(matches, matchToRemove, nbMatches));
 
             removeMatch(matches, matchToRemove);
-
         }
         printf("Le joueur %d a retiré %d allumette(s)\n", numPlayer, nbToRemove);
         displayMatches(matches, nbMatches);
 
-
         printf("\n");
-        }
-        printf("Le joueur %d ", numPlayer);
-        if(isWinGame(matches, nbMatches)) {
-            printf("a gagné");
-        } else {
-            printf("a perdu");
-            
-        }
+    }
+    printf("Le joueur %d ", numPlayer);
+    if (isWinGame(matches, nbMatches))
+    {
+        printf("a gagné");
+    }
+    else
+    {
+        printf("a perdu");
+    }
 }
 
-void onePlayerSmart() {
+void onePlayerSmart()
+{
     int nbMatches;
     int remaining;
     int nbToRemove;
     int matchToRemove;
     int MAX = 3;
-    int numPlayer = randomRange(0,2) + 1;
-    
+    int numPlayer = randomRange(0, 2) + 1;
+
     printf("Veuillez saisir le nombre d'allumettes total : ");
     scanf("%d", &nbMatches);
 
@@ -182,52 +215,57 @@ void onePlayerSmart() {
 
     displayMatches(matches, nbMatches);
 
-    while(!isEndGame(matches, nbMatches)) {
+    while (!isEndGame(matches, nbMatches))
+    {
         numPlayer = (numPlayer % 2) + 1;
-  
-        remaining = getRemainingMatches(matches,nbMatches);
-        printf("Il reste %d allumettes à retirer\n",remaining);
+
+        remaining = getRemainingMatches(matches, nbMatches);
+        printf("Il reste %d allumettes à retirer\n", remaining);
         printf("Joueur %d - ", numPlayer);
 
-        if(numPlayer == 2) {
-            nbToRemove = aiChoice(MAX, remaining); 
-        } 
-        else {
-            nbToRemove = playerChoice(MAX,remaining);
+        if (numPlayer == 2)
+        {
+            nbToRemove = aiChoice(MAX, remaining);
+        }
+        else
+        {
+            nbToRemove = playerChoice(MAX, remaining);
         }
 
-        for(int i = 0; i < nbToRemove; i++) {
-             do {
+        for (int i = 0; i < nbToRemove; i++)
+        {
+            do
+            {
                 matchToRemove = rand() % nbMatches;
-             }
-             while(!canRemoveMatch(matches, matchToRemove, nbMatches));
+            } while (!canRemoveMatch(matches, matchToRemove, nbMatches));
 
             removeMatch(matches, matchToRemove);
-
         }
         printf("Le joueur %d a retiré %d allumette(s)\n", numPlayer, nbToRemove);
         displayMatches(matches, nbMatches);
 
-
         printf("\n");
-        }
-        printf("Le joueur %d ", numPlayer);
-        if(isWinGame(matches, nbMatches)) {
-            printf("a gagné");
-        } else {
-            printf("a perdu");
-            
-        }
+    }
+    printf("Le joueur %d ", numPlayer);
+    if (isWinGame(matches, nbMatches))
+    {
+        printf("a gagné");
+    }
+    else
+    {
+        printf("a perdu");
+    }
 }
 
-void twoPlayersGame() {
+void twoPlayersGame()
+{
     int nbMatches;
     int remaining;
     int nbToRemove;
     int matchToRemove;
     int MAX = 3;
-    int numPlayer = randomRange(0,2) + 1;
-    
+    int numPlayer = randomRange(0, 2) + 1;
+
     printf("Veuillez saisir le nombre d'allumettes total : ");
     scanf("%d", &nbMatches);
 
@@ -236,44 +274,48 @@ void twoPlayersGame() {
     createMatches(matches, nbMatches);
     displayMatches(matches, nbMatches);
 
-    while(!isEndGame(matches, nbMatches)) {
+    while (!isEndGame(matches, nbMatches))
+    {
         numPlayer = (numPlayer % 2) + 1;
-  
-        remaining = getRemainingMatches(matches,nbMatches);
-        printf("Il reste %d allumettes à retirer\n",remaining);
+
+        remaining = getRemainingMatches(matches, nbMatches);
+        printf("Il reste %d allumettes à retirer\n", remaining);
 
         printf("Joueur %d - ", numPlayer);
 
-        nbToRemove = playerChoice(MAX,remaining);
+        nbToRemove = playerChoice(MAX, remaining);
 
-        for(int i = 0; i < nbToRemove; i++) {
-             do {
+        for (int i = 0; i < nbToRemove; i++)
+        {
+            do
+            {
                 matchToRemove = rand() % nbMatches;
-             }
-             while(!canRemoveMatch(matches, matchToRemove, nbMatches));
+            } while (!canRemoveMatch(matches, matchToRemove, nbMatches));
 
             removeMatch(matches, matchToRemove);
         }
         displayMatches(matches, nbMatches);
 
-
         printf("\n");
-        }
-        printf("Le joueur %d ", numPlayer);
-        if(isWinGame(matches, nbMatches)) {
-            printf("a gagné");
-        } else {
-            printf("a perdu");
-            
-        }
+    }
+    printf("Le joueur %d ", numPlayer);
+    if (isWinGame(matches, nbMatches))
+    {
+        printf("a gagné");
+    }
+    else
+    {
+        printf("a perdu");
+    }
 }
 
-int main() {
+int main()
+{
     onePlayerNaive();
     onePlayerSmart();
     twoPlayersGame();
 
     // Rajouter le menu
-    // Rajouter input noms joueurs
+    // Rajouter input noms joueurs avec if
     // Refacto le tableau en int décrémentable ?
 }
