@@ -332,10 +332,41 @@ void twoPlayersGame()
 
 int main()
 {
-    onePlayerNaive();
-    onePlayerSmart();
-    twoPlayersGame();
+    int choice;
+    int gameMode;
 
-    // Rajouter le menu
+    printf("Bonjour et bienvenue dans le jeu des allumettes\n\nVous allez avoir 3 menus.\nVous choisirez d'abord si vous voulez voir les règles u jeu ou non, puis le nombre d'allumettes à utiliser, et enfin le nombre de joueurs.\n\nQue faire ?\n\n1 - Jouer\n2 - Voir les règles du jeu\n3 - Voir les credits\n4 - Quitter\n\nVotre choix : ");
+    scanf("%d", &choice);
+    switch (choice)
+    {
+    case 1:
+        printf("Choisissez votre mode de jeu :\n\n1 - Humain VS Ordinateur - Facile\n2 - Humain VS Ordinateur - Difficile\n3 - 2 joueurs\n\nVotre choix : ");
+        scanf("%d", &gameMode);
+        switch (gameMode)
+        {
+        case 1:
+            onePlayerNaive();
+            break;
+        case 2:
+            onePlayerSmart();
+            break;
+        case 3:
+            twoPlayersGame();
+            break;
+        default:
+            break;
+        }
+        break;
+    case 2:
+        printf("Le but du jeu est simple :\n\nCe jeu se joue à deux. Vous avez un nombre n d'allumettes.\nA tour de rôle, chacun des deux joueurs enlève entre 1 et 3 allumettes selon ce qu'il souhaite. Le perdant est celui qui doit enlever la dernière allumette.\n\nAttention il existe 3 niveaux de difficulté en version Humain VS Ordi.\nLe premier est plutôt simple à battre, donc pour les débutants. Mais le dernier...\nContactez moi si vous avez réussi (screenshot evidemment) mon e-mail est dans les crédits");
+        break;
+    case 3:
+        printf("Auteur : VAN Steven\nMail : steven-van@outlook.fr\nGitHub : github.com/steven-van");
+        break;
+    case 4:
+        exit(0);
+    default:
+        exit(0);
+    }
     // Refacto le tableau en int décrémentable ?
 }
