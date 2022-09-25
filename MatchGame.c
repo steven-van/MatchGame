@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 void createMatches(int tabMatches[], int nbMatches)
 {
@@ -40,7 +41,7 @@ int playerChoice(int maxToRemove, int maxRemovable)
 {
     int nb;
 
-    printf("Indiquez le nombre d'allumettes à retirer (<= 3) : ");
+    printf("Indiquez le nombre d'allumettes a retirer (<= 3) : ");
     scanf("%d", &nb);
     while (nb < 1 || nb > maxToRemove || nb > maxRemovable)
     {
@@ -162,7 +163,7 @@ void onePlayerNaive()
         numPlayer = (numPlayer % 2) + 1;
 
         remaining = getRemainingMatches(matches, nbMatches);
-        printf("Il reste %d allumettes à retirer\n", remaining);
+        printf("Il reste %d allumettes a retirer\n", remaining);
 
         printf("%s - ", numPlayer == 1 ? playerOne : computer);
 
@@ -188,7 +189,7 @@ void onePlayerNaive()
             removeMatch(matches, matchToRemove);
         }
 
-        printf("%s a retiré %d allumette(s)\n", numPlayer == 1 ? playerOne : computer, nbToRemove);
+        printf("%s a retire %d allumette(s)\n", numPlayer == 1 ? playerOne : computer, nbToRemove);
 
         displayMatches(matches, nbMatches);
 
@@ -198,7 +199,7 @@ void onePlayerNaive()
 
     if (isWinGame(matches, nbMatches))
     {
-        printf("a gagné");
+        printf("a gagne");
     }
     else
     {
@@ -233,7 +234,7 @@ void onePlayerSmart()
         numPlayer = (numPlayer % 2) + 1;
 
         remaining = getRemainingMatches(matches, nbMatches);
-        printf("Il reste %d allumettes à retirer\n", remaining);
+        printf("Il reste %d allumettes a retirer\n", remaining);
         printf("%s - ", numPlayer == 1 ? playerOne : computer);
 
         if (numPlayer == 2)
@@ -255,7 +256,7 @@ void onePlayerSmart()
             removeMatch(matches, matchToRemove);
         }
 
-        printf("%s a retiré %d allumette(s)\n", numPlayer == 1 ? playerOne : computer, nbToRemove);
+        printf("%s a retire %d allumette(s)\n", numPlayer == 1 ? playerOne : computer, nbToRemove);
         displayMatches(matches, nbMatches);
 
         printf("\n");
@@ -263,7 +264,7 @@ void onePlayerSmart()
     printf("%s ", numPlayer == 1 ? playerOne : computer);
     if (isWinGame(matches, nbMatches))
     {
-        printf("a gagné");
+        printf("a gagne");
     }
     else
     {
@@ -300,7 +301,7 @@ void twoPlayersGame()
         numPlayer = (numPlayer % 2) + 1;
 
         remaining = getRemainingMatches(matches, nbMatches);
-        printf("Il reste %d allumettes à retirer\n", remaining);
+        printf("Il reste %d allumettes a retirer\n", remaining);
 
         printf("%s - ", numPlayer == 1 ? playerOne : playerTwo);
 
@@ -322,7 +323,7 @@ void twoPlayersGame()
     printf("%s ", numPlayer == 1 ? playerOne : playerTwo);
     if (isWinGame(matches, nbMatches))
     {
-        printf("a gagné");
+        printf("a gagne");
     }
     else
     {
@@ -335,7 +336,7 @@ int main()
     int choice;
     int gameMode;
 
-    printf("Bonjour et bienvenue dans le jeu des allumettes\n\nVous allez avoir 3 menus.\nVous choisirez d'abord si vous voulez voir les règles u jeu ou non, puis le nombre d'allumettes à utiliser, et enfin le nombre de joueurs.\n\nQue faire ?\n\n1 - Jouer\n2 - Voir les règles du jeu\n3 - Voir les credits\n4 - Quitter\n\nVotre choix : ");
+    printf("Bonjour et bienvenue dans le jeu des allumettes\n\nVous allez avoir 3 menus.\nVous choisirez d'abord si vous voulez voir les règles u jeu ou non, puis le nombre d'allumettes a utiliser, et enfin le nombre de joueurs.\n\nQue faire ?\n\n1 - Jouer\n2 - Voir les règles du jeu\n3 - Voir les credits\n4 - Quitter\n\nVotre choix : ");
     scanf("%d", &choice);
     switch (choice)
     {
@@ -358,7 +359,7 @@ int main()
         }
         break;
     case 2:
-        printf("Le but du jeu est simple :\n\nCe jeu se joue à deux. Vous avez un nombre n d'allumettes.\nA tour de rôle, chacun des deux joueurs enlève entre 1 et 3 allumettes selon ce qu'il souhaite. Le perdant est celui qui doit enlever la dernière allumette.\n\nAttention il existe 3 niveaux de difficulté en version Humain VS Ordi.\nLe premier est plutôt simple à battre, donc pour les débutants. Mais le dernier...\nContactez moi si vous avez réussi (screenshot evidemment) mon e-mail est dans les crédits");
+        printf("Le but du jeu est simple :\n\nCe jeu se joue a deux. Vous avez un nombre n d'allumettes.\nA tour de rôle, chacun des deux joueurs enlève entre 1 et 3 allumettes selon ce qu'il souhaite. Le perdant est celui qui doit enlever la dernière allumette.\n\nAttention il existe 3 niveaux de difficulte en version Humain VS Ordi.\nLe premier est plutôt simple a battre, donc pour les debutants. Mais le dernier...\nContactez moi si vous avez reussi (screenshot evidemment) mon e-mail est dans les credits");
         break;
     case 3:
         printf("Auteur : VAN Steven\nMail : steven-van@outlook.fr\nGitHub : github.com/steven-van");
@@ -368,5 +369,5 @@ int main()
     default:
         exit(0);
     }
-    // Refacto le tableau en int décrémentable ?
+    // Refacto le tableau en int decrementable ?
 }
