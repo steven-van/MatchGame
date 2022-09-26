@@ -336,7 +336,7 @@ int main()
     int choice;
     int gameMode;
 
-    printf("Bonjour et bienvenue dans le jeu des allumettes\n\nVous allez avoir 3 menus.\nVous choisirez d'abord si vous voulez voir les règles u jeu ou non, puis le nombre d'allumettes a utiliser, et enfin le nombre de joueurs.\n\nQue faire ?\n\n1 - Jouer\n2 - Voir les règles du jeu\n3 - Voir les credits\n4 - Quitter\n\nVotre choix : ");
+    printf("Bonjour et bienvenue dans le jeu des allumettes\n\nVous allez avoir 3 menus.\nVous choisirez d'abord si vous voulez voir les regles u jeu ou non, puis le nombre d'allumettes a utiliser, et enfin le nombre de joueurs.\n\nQue faire ?\n\n1 - Jouer\n2 - Voir les regles du jeu\n3 - Voir les credits\n4 - Quitter\n\nVotre choix : ");
     scanf("%d", &choice);
     switch (choice)
     {
@@ -359,12 +359,13 @@ int main()
         }
         break;
     case 2:
-        printf("Le but du jeu est simple :\n\nCe jeu se joue a deux. Vous avez un nombre n d'allumettes.\nA tour de rôle, chacun des deux joueurs enlève entre 1 et 3 allumettes selon ce qu'il souhaite. Le perdant est celui qui doit enlever la dernière allumette.\n\nAttention il existe 3 niveaux de difficulte en version Humain VS Ordi.\nLe premier est plutôt simple a battre, donc pour les debutants. Mais le dernier...\nContactez moi si vous avez reussi (screenshot evidemment) mon e-mail est dans les credits");
+        printf("Le but du jeu est simple :\n\nCe jeu se joue a deux. Vous avez un nombre n d'allumettes.\nA tour de role, chacun des deux joueurs enleve entre 1 et 3 allumettes selon ce qu'il souhaite. Le perdant est celui qui doit enlever la derniere allumette.\n\nAttention il existe 3 niveaux de difficulte en version Humain VS Ordi.\nLe premier est plutot simple a battre, donc pour les debutants. Mais le dernier...\nContactez moi si vous avez reussi (screenshot evidemment) mon e-mail est dans les credits");
         break;
     case 3:
         printf("Auteur : VAN Steven\nMail : steven-van@outlook.fr\nGitHub : github.com/steven-van");
         break;
     case 4:
+        printf("Bye bye ! :)");
         exit(0);
     default:
         exit(0);
