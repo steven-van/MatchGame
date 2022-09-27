@@ -43,11 +43,13 @@ int playerChoice(int maxToRemove, int maxRemovable)
     int nb;
 
     printf("Indiquez le nombre d'allumettes a retirer (<= 3) : ");
-    scanf("%d", &nb);
-    while (nb < 1 || nb > maxToRemove || nb > maxRemovable)
+
+    while (scanf("%d", &nb) != 1 || nb < 1 || nb > maxToRemove || nb > maxRemovable)
     {
         printf("Invalide ! Recommencez \n");
         scanf("%d", &nb);
+        while (getchar() != '\n')
+            ;
     }
 
     return nb;
@@ -149,7 +151,7 @@ void onePlayerNaive()
     char computer[] = "Ordinateur";
 
     printf("Veuillez entrer le nom du joueur : ");
-    scanf("%s", playerOne);
+    scanf("%s", &playerOne);
 
     printf("Veuillez saisir le nombre d'allumettes total : ");
     scanf("%d", &nbMatches);
@@ -275,9 +277,9 @@ void twoPlayersGame()
     char playerTwo[20];
 
     printf("Veuillez entrer le nom du joueur 1 : ");
-    scanf("%s", playerOne);
+    scanf("%s", &playerOne);
     printf("Veuillez entrer le nom du joueur 2 : ");
-    scanf("%s", playerTwo);
+    scanf("%s", &playerTwo);
 
     printf("Veuillez saisir le nombre d'allumettes total : ");
     scanf("%d", &nbMatches);
@@ -334,7 +336,7 @@ void onePlayerSmart()
     char computer[] = "Ordinateur";
 
     printf("Veuillez entrer le nom du joueur : ");
-    scanf("%s", playerOne);
+    scanf("%s", &playerOne);
 
     printf("Veuillez saisir le nombre d'allumettes total : ");
     scanf("%d", &nbMatches);
