@@ -10,7 +10,7 @@ int main()
     switch (choice)
     {
     case 1:
-        printf("Choisissez votre mode de jeu :\n\n1 - Humain VS Ordinateur - Facile\n2 - Humain VS Ordinateur - Difficile\n3 - 2 joueurs\n4 - Ordinateur VS Ordinateur\n\nVotre choix : ");
+        printf("Choisissez votre mode de jeu :\n\n1 - Humain VS Ordi - Facile\n2 - Humain VS Ordi - Difficile\n3 - 2 joueurs\n4 - Ordi VS Ordi\n\nVotre choix : ");
         scanf("%d", &gameMode);
         switch (gameMode)
         {
@@ -31,7 +31,7 @@ int main()
         }
         break;
     case 2:
-        printf("Le but du jeu est simple :\n\nCe jeu se joue a deux. Vous avez un nombre n d'allumettes.\nA tour de role, chacun des deux joueurs enleve entre 1 et 3 allumettes selon ce qu'il souhaite. Le perdant est celui qui doit enlever la derniere allumette.\n\nIl existe 3 modes de jeu :\n1 - Humain VS Ordi - Facile\n2 - Humain VS Ordi - Difficile\n3 - 2 joueurs\n\nBon jeu !");
+        printf("Le but du jeu est simple :\n\nCe jeu se joue a deux. Vous avez un nombre n d'allumettes.\nA tour de role, chacun des deux joueurs enleve entre 1 et 3 allumettes selon ce qu'il souhaite. Le perdant est celui qui doit enlever la derniere allumette.\n\nIl existe 4 modes de jeu :\n1 - Humain VS Ordi - Facile\n2 - Humain VS Ordi - Difficile\n3 - 2 joueurs\n4 - Ordi VS Ordi\n\nBon jeu !");
         break;
     case 3:
         printf("Auteur : VAN Steven\nMail : steven-van@outlook.fr\nGitHub : github.com/steven-van");
