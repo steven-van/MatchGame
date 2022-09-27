@@ -1,18 +1,18 @@
 ## Move to the directory
 
 ```
-    cd MatchGame
+cd MatchGame
 ```
 
 ## Launch the project
 
 ```
-    MatchGame.exe
+MatchGame.exe
 ```
 
-## If MatchGame.exe does not exist 
+## If MatchGame.exe does not exist
 
 ```
-    gcc MatchGame.c -o MatchGame.exe
-    MatchGame.exe
+gcc MatchGame.c -o MatchGame.exe
+MatchGame.exe
 ```
