@@ -3,6 +3,8 @@
 #include <string.h>
 #include <time.h>
 
+// @brief Fill the array with nbMatches matches
+// @param tabMatches, nbMatches
 void createMatches(int tabMatches[], int nbMatches)
 {
     int *ptr = tabMatches;
@@ -12,6 +14,9 @@ void createMatches(int tabMatches[], int nbMatches)
     }
 }
 
+// @brief Check if the match at the index position can be removed
+// @param tabMatches, index, length
+// @return 1 if true and 0 if false
 int canRemoveMatch(int tabMatches[], int index, int length)
 {
     if (index >= 0 && index < length && tabMatches[index] == 1)
@@ -24,6 +29,9 @@ int canRemoveMatch(int tabMatches[], int index, int length)
     }
 }
 
+// @brief Count the remaining removable matches
+// @param tabMatches, length
+// @return the remaining removable matches
 int getRemainingMatches(int tabMatches[], int length)
 {
     int cpt = 0;
@@ -37,6 +45,10 @@ int getRemainingMatches(int tabMatches[], int length)
     return cpt;
 }
 
+// @brief Ask the player choose the number of matches to remove
+// between [1;maxToRemove] and [1;maxRemovable] if maxRemovable < maxToRemove
+// @param maxToRemove, maxRemovable
+// @return the number of matches the player wants to remove
 int playerChoice(int maxToRemove, int maxRemovable)
 {
     int nb;
@@ -52,22 +64,36 @@ int playerChoice(int maxToRemove, int maxRemovable)
     return nb;
 }
 
+// @brief : Remove the match at the <index> position
+// @param : tabMatches, index
 void removeMatch(int tabMatches[], int index)
 {
     int *ptr = tabMatches;
     *(ptr + index) = 0;
 }
 
+// @brief Check if the current player has won
+// (i.e the number of remaining matches is equal to 1)
+// @param tabMatches, length
+// @return 1 if true and 0 if false
 int isWinGame(int tabMatches[], int length)
 {
     return getRemainingMatches(tabMatches, length) == 1;
 }
 
+// @brief : Check if the current player has lost
+// (i.e the number of remaining matches is equal to 0)
+// @param tabMatches, length
+// @return 1 if true and 0 if false
 int isLoseGame(int tabMatches[], int length)
 {
     return getRemainingMatches(tabMatches, length) == 0;
 }
 
+// Check if the game is finished
+// (i.e the number of remaining matches is equal to 0 or 1)
+// @param tabMatches, length
+// @return 1 if true and 0 if false
 int isEndGame(int tabMatches[], int length)
 {
     if (isWinGame(tabMatches, length) || isLoseGame(tabMatches, length))
@@ -78,6 +104,9 @@ int isEndGame(int tabMatches[], int length)
     return 0;
 }
 
+// @brief Get the computer choice of matches to remove
+// @param max, remaining
+// @return the number of matches the computer wants to remove
 int aiChoice(int max, int remaining)
 {
     int nbToRemove;
@@ -105,6 +134,8 @@ int aiChoice(int max, int remaining)
     return nbToRemove;
 }
 
+// @brief Print the array of matches
+// @param tabMatches, length
 void displayMatches(int tabMatches[], int length)
 {
     for (int i = 0; i < length; i++)
@@ -130,12 +161,16 @@ void displayMatches(int tabMatches[], int length)
     printf("\n");
 }
 
-int randomRange(int min, int max) // [min ; max[
+// @brief Generate a random number between [min;max[
+// @param min, max
+// @return number between [min;max[
+int randomRange(int min, int max)
 {
     srand(time(NULL));
     return (rand() % (max - min)) + min;
 }
 
+// @brief Game against a naïve computer
 void onePlayerNaive()
 {
     int nbMatches;
@@ -207,6 +242,7 @@ void onePlayerNaive()
     }
 }
 
+// @brief Game against a smart computer
 void onePlayerSmart()
 {
     int nbMatches;
@@ -272,6 +308,7 @@ void onePlayerSmart()
     }
 }
 
+// @brief Game between two players
 void twoPlayersGame()
 {
     int nbMatches;
@@ -370,5 +407,4 @@ int main()
     default:
         exit(0);
     }
-    // Refacto le tableau en int decrementable ?
 }
